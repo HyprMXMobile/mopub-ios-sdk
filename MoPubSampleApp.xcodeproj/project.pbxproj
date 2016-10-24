@@ -7,6 +7,9 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		1303AC7F1DBEC33600FEBC2B /* HyprMXGlobalMediationSettings.m in Sources */ = {isa = PBXBuildFile; fileRef = 1303AC7A1DBEC33600FEBC2B /* HyprMXGlobalMediationSettings.m */; };
+		1303AC801DBEC33600FEBC2B /* HyprMXRewardedVideoCustomEvent.m in Sources */ = {isa = PBXBuildFile; fileRef = 1303AC7C1DBEC33600FEBC2B /* HyprMXRewardedVideoCustomEvent.m */; };
+		1303AC811DBEC33600FEBC2B /* HyprMX.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1303AC7E1DBEC33600FEBC2B /* HyprMX.framework */; };
 		462E156F17F0F5D100408E17 /* MPMRectBannerAdDetailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 462E156E17F0F5D100408E17 /* MPMRectBannerAdDetailViewController.m */; };
 		467343F017FE3D6900D68BB6 /* MPAdPersistenceManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 467343EF17FE3D6900D68BB6 /* MPAdPersistenceManager.m */; };
 		469A15F01AC1F0BA00D6F0EF /* MPSampleAppLogReader.m in Sources */ = {isa = PBXBuildFile; fileRef = 469A15EF1AC1F0BA00D6F0EF /* MPSampleAppLogReader.m */; };
@@ -651,6 +654,11 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		1303AC791DBEC33600FEBC2B /* HyprMXGlobalMediationSettings.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HyprMXGlobalMediationSettings.h; sourceTree = "<group>"; };
+		1303AC7A1DBEC33600FEBC2B /* HyprMXGlobalMediationSettings.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HyprMXGlobalMediationSettings.m; sourceTree = "<group>"; };
+		1303AC7B1DBEC33600FEBC2B /* HyprMXRewardedVideoCustomEvent.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HyprMXRewardedVideoCustomEvent.h; sourceTree = "<group>"; };
+		1303AC7C1DBEC33600FEBC2B /* HyprMXRewardedVideoCustomEvent.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HyprMXRewardedVideoCustomEvent.m; sourceTree = "<group>"; };
+		1303AC7E1DBEC33600FEBC2B /* HyprMX.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = HyprMX.framework; sourceTree = "<group>"; };
 		3D3BC88B1CBEE8E100BDA2FA /* MPNativeAdRendererConstants.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MPNativeAdRendererConstants.h; sourceTree = "<group>"; };
 		4604B7BB1A002F0A002234E9 /* MoPubSampleApp with CEs-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = "MoPubSampleApp with CEs-Info.plist"; path = "MoPubSampleApp/MoPubSampleApp with CEs-Info.plist"; sourceTree = "<group>"; };
 		4614B3F417E8D01D00812D2C /* CFNetwork.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CFNetwork.framework; path = System/Library/Frameworks/CFNetwork.framework; sourceTree = SDKROOT; };
@@ -1319,6 +1327,7 @@
 				5755DAFA1AAA4E2300DC32EA /* AdColony.framework in Frameworks */,
 				B2DDC9BB1BFBACFA00656985 /* FBAudienceNetwork.framework in Frameworks */,
 				46B3341C19F075680078078A /* Foundation.framework in Frameworks */,
+				1303AC811DBEC33600FEBC2B /* HyprMX.framework in Frameworks */,
 				46B3341D19F075680078078A /* CoreLocation.framework in Frameworks */,
 				BCDDF75D1DA6C10F001FEDC3 /* libFlurryAds_7.6.4.a in Frameworks */,
 				46B3341E19F075680078078A /* QuartzCore.framework in Frameworks */,
@@ -1360,6 +1369,26 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		1303AC781DBEC33600FEBC2B /* HyprMarketplace */ = {
+			isa = PBXGroup;
+			children = (
+				1303AC791DBEC33600FEBC2B /* HyprMXGlobalMediationSettings.h */,
+				1303AC7A1DBEC33600FEBC2B /* HyprMXGlobalMediationSettings.m */,
+				1303AC7B1DBEC33600FEBC2B /* HyprMXRewardedVideoCustomEvent.h */,
+				1303AC7C1DBEC33600FEBC2B /* HyprMXRewardedVideoCustomEvent.m */,
+				1303AC7D1DBEC33600FEBC2B /* SDK */,
+			);
+			path = HyprMarketplace;
+			sourceTree = "<group>";
+		};
+		1303AC7D1DBEC33600FEBC2B /* SDK */ = {
+			isa = PBXGroup;
+			children = (
+				1303AC7E1DBEC33600FEBC2B /* HyprMX.framework */,
+			);
+			path = SDK;
+			sourceTree = "<group>";
+		};
 		46B3345119F076E60078078A /* MoPubSampleApp with CEs */ = {
 			isa = PBXGroup;
 			children = (
@@ -1857,6 +1886,7 @@
 				BC6E4E8F1D91B05500014284 /* Flurry */,
 				5755DA841AAA4E2300DC32EA /* GoogleAdMob */,
 				5755DA981AAA4E2300DC32EA /* Greystripe */,
+                1303AC781DBEC33600FEBC2B /* HyprMarketplace */,
 				5755DAAD1AAA4E2300DC32EA /* InMobi */,
 				5755DAC41AAA4E2300DC32EA /* Millennial */,
 				57D322501BD9946A00ACF21E /* Tapjoy */,
@@ -2808,6 +2838,7 @@
 				BC6E4ECC1D91B10400014284 /* FlurryNativeCustomEvent.m in Sources */,
 				572409E01A688C05009271B8 /* MPHTMLInterstitialCustomEvent.m in Sources */,
 				57240A731A688C05009271B8 /* MPInterstitialAdController.m in Sources */,
+				1303AC801DBEC33600FEBC2B /* HyprMXRewardedVideoCustomEvent.m in Sources */,
 				57240A8E1A688C05009271B8 /* MPNativeAdUtils.m in Sources */,
 				572409D11A688C05009271B8 /* MPProgressOverlayView.m in Sources */,
 				57240ABE1A688C05009271B8 /* MPServerAdPositioning.m in Sources */,
@@ -2982,6 +3013,7 @@
 				B2A7A63F1BA8C58300659ADD /* MOPUBNativeVideoAdRenderer.m in Sources */,
 				46B333EB19F075680078078A /* MPAdEntryViewController.m in Sources */,
 				57240AA01A688C05009271B8 /* MPClientAdPositioning.m in Sources */,
+				1303AC7F1DBEC33600FEBC2B /* HyprMXGlobalMediationSettings.m in Sources */,
 				46B333F519F075680078078A /* MPNativeAdPageView.m in Sources */,
 				572409C21A688C05009271B8 /* MPAdServerURLBuilder.m in Sources */,
 				A7A4228A1B5F224400024A3A /* MPVASTMediaFile.m in Sources */,
@@ -3240,6 +3272,7 @@
 					"$(PROJECT_DIR)/AdNetworkSupport/GoogleAdMob/SDK",
 					"$(PROJECT_DIR)/AdNetworkSupport/Unity/SDK",
 					"$(PROJECT_DIR)/AdNetworkSupport/Tapjoy/SDK/Tapjoy.embeddedframework",
+					"$(PROJECT_DIR)/AdNetworkSupport/HyprMarketplace/SDK",
 				);
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "MoPubSampleApp/MoPubSampleApp-Prefix.pch";
@@ -3282,6 +3315,7 @@
 					"$(PROJECT_DIR)/AdNetworkSupport/GoogleAdMob/SDK",
 					"$(PROJECT_DIR)/AdNetworkSupport/Unity/SDK",
 					"$(PROJECT_DIR)/AdNetworkSupport/Tapjoy/SDK/Tapjoy.embeddedframework",
+					"$(PROJECT_DIR)/AdNetworkSupport/HyprMarketplace/SDK",
 				);
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "MoPubSampleApp/MoPubSampleApp-Prefix.pch";

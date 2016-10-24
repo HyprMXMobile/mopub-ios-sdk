@@ -76,6 +76,7 @@
     // 3rd Party Networks
     #if CUSTOM_EVENTS_ENABLED
              [MPAdInfo infoWithTitle:@"Chartboost" ID:@"8be0bb08fb4f4e90a86416c29c235d4a" type:MPAdInfoRewardedVideo],
+             [MPAdInfo infoWithTitle:@"HyprMarketplace" ID:@"77c2bac41a784d17aefc802f6b340213" type:MPAdInfoRewardedVideo],
              [MPAdInfo infoWithTitle:@"Tapjoy" ID:@"58e30d62673e4c85b2098887a4218816" type:MPAdInfoRewardedVideo],
              [MPAdInfo infoWithTitle:@"Vungle" ID:@"48274e80f11b496bb3532c4f59f28d12" type:MPAdInfoRewardedVideo],
     #endif
