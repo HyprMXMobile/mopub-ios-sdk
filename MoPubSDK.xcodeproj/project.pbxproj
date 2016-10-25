@@ -4959,7 +4959,7 @@
 			dependencies = (
 			);
 			name = HyprMarketplaceCustomEvent;
-			productName = VungleCustomEvent;
+			productName = HyprMarketplaceCustomEvent;
 			productReference = 1334410D1DBEB2B50088586D /* libHyprMarketplaceCustomEvent.a */;
 			productType = "com.apple.product-type.library.static";
 		};
