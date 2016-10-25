@@ -7203,7 +7203,7 @@
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
 				COPY_PHASE_STRIP = NO;
 				DEAD_CODE_STRIPPING = NO;
-				DSTROOT = /tmp/VungleCustomEvent.dst;
+				DSTROOT = /tmp/HyprMarketplaceCustomEvent.dst;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)/AdNetworkSupport/HyprMarketplace/SDK",
@@ -7221,7 +7221,7 @@
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				OTHER_LDFLAGS = "-ObjC";
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PUBLIC_HEADERS_FOLDER_PATH = HeadersVungle;
+				PUBLIC_HEADERS_FOLDER_PATH = HeadersHyprMarketplace;
 				SKIP_INSTALL = YES;
 				STRIP_STYLE = "non-global";
 			};
@@ -7241,7 +7241,7 @@
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
 				COPY_PHASE_STRIP = NO;
 				DEAD_CODE_STRIPPING = NO;
-				DSTROOT = /tmp/VungleCustomEvent.dst;
+				DSTROOT = /tmp/HyprMarketplaceCustomEvent.dst;
 				ENABLE_NS_ASSERTIONS = NO;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
@@ -7256,7 +7256,7 @@
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				OTHER_LDFLAGS = "-ObjC";
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PUBLIC_HEADERS_FOLDER_PATH = HeadersVungle;
+				PUBLIC_HEADERS_FOLDER_PATH = HeadersHyprMarketplace;
 				SKIP_INSTALL = YES;
 				STRIP_STYLE = "non-global";
 			};
