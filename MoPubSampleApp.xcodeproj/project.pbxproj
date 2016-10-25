@@ -10,6 +10,7 @@
 		1303AC7F1DBEC33600FEBC2B /* HyprMXGlobalMediationSettings.m in Sources */ = {isa = PBXBuildFile; fileRef = 1303AC7A1DBEC33600FEBC2B /* HyprMXGlobalMediationSettings.m */; };
 		1303AC801DBEC33600FEBC2B /* HyprMXRewardedVideoCustomEvent.m in Sources */ = {isa = PBXBuildFile; fileRef = 1303AC7C1DBEC33600FEBC2B /* HyprMXRewardedVideoCustomEvent.m */; };
 		1303AC811DBEC33600FEBC2B /* HyprMX.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1303AC7E1DBEC33600FEBC2B /* HyprMX.framework */; };
+		1303AC8D1DBFB5EB00FEBC2B /* SafariServices.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1303AC8C1DBFB5EB00FEBC2B /* SafariServices.framework */; };
 		462E156F17F0F5D100408E17 /* MPMRectBannerAdDetailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 462E156E17F0F5D100408E17 /* MPMRectBannerAdDetailViewController.m */; };
 		467343F017FE3D6900D68BB6 /* MPAdPersistenceManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 467343EF17FE3D6900D68BB6 /* MPAdPersistenceManager.m */; };
 		469A15F01AC1F0BA00D6F0EF /* MPSampleAppLogReader.m in Sources */ = {isa = PBXBuildFile; fileRef = 469A15EF1AC1F0BA00D6F0EF /* MPSampleAppLogReader.m */; };
@@ -659,6 +660,7 @@
 		1303AC7B1DBEC33600FEBC2B /* HyprMXRewardedVideoCustomEvent.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HyprMXRewardedVideoCustomEvent.h; sourceTree = "<group>"; };
 		1303AC7C1DBEC33600FEBC2B /* HyprMXRewardedVideoCustomEvent.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HyprMXRewardedVideoCustomEvent.m; sourceTree = "<group>"; };
 		1303AC7E1DBEC33600FEBC2B /* HyprMX.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = HyprMX.framework; sourceTree = "<group>"; };
+		1303AC8C1DBFB5EB00FEBC2B /* SafariServices.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SafariServices.framework; path = System/Library/Frameworks/SafariServices.framework; sourceTree = SDKROOT; };
 		3D3BC88B1CBEE8E100BDA2FA /* MPNativeAdRendererConstants.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MPNativeAdRendererConstants.h; sourceTree = "<group>"; };
 		4604B7BB1A002F0A002234E9 /* MoPubSampleApp with CEs-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = "MoPubSampleApp with CEs-Info.plist"; path = "MoPubSampleApp/MoPubSampleApp with CEs-Info.plist"; sourceTree = "<group>"; };
 		4614B3F417E8D01D00812D2C /* CFNetwork.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CFNetwork.framework; path = System/Library/Frameworks/CFNetwork.framework; sourceTree = SDKROOT; };
@@ -1294,6 +1296,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				1303AC8D1DBFB5EB00FEBC2B /* SafariServices.framework in Frameworks */,
 				46B3341219F075680078078A /* Security.framework in Frameworks */,
 				57881F211BDED96A0046122E /* CoreMotion.framework in Frameworks */,
 				57EF00CE1BD96EB5002634DE /* WebKit.framework in Frameworks */,
@@ -1886,7 +1889,7 @@
 				BC6E4E8F1D91B05500014284 /* Flurry */,
 				5755DA841AAA4E2300DC32EA /* GoogleAdMob */,
 				5755DA981AAA4E2300DC32EA /* Greystripe */,
-                1303AC781DBEC33600FEBC2B /* HyprMarketplace */,
+				1303AC781DBEC33600FEBC2B /* HyprMarketplace */,
 				5755DAAD1AAA4E2300DC32EA /* InMobi */,
 				5755DAC41AAA4E2300DC32EA /* Millennial */,
 				57D322501BD9946A00ACF21E /* Tapjoy */,
@@ -2294,6 +2297,7 @@
 		AE23239116F78A17002C2082 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				1303AC8C1DBFB5EB00FEBC2B /* SafariServices.framework */,
 				AE902A31171F559400991DF9 /* AddressBook.framework */,
 				AE902A32171F559400991DF9 /* AddressBookUI.framework */,
 				AED9E47216F78DAD00EA71A7 /* AdSupport.framework */,
