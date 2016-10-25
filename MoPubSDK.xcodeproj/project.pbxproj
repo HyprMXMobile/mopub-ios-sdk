@@ -1781,6 +1781,7 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
+		1303AC921DBFBED500FEBC2B /* README.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = "<group>"; };
 		1334410D1DBEB2B50088586D /* libHyprMarketplaceCustomEvent.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libHyprMarketplaceCustomEvent.a; sourceTree = BUILT_PRODUCTS_DIR; };
 		133441121DBEB79F0088586D /* HyprMXGlobalMediationSettings.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HyprMXGlobalMediationSettings.h; sourceTree = "<group>"; };
 		133441131DBEB79F0088586D /* HyprMXGlobalMediationSettings.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HyprMXGlobalMediationSettings.m; sourceTree = "<group>"; };
@@ -2905,6 +2906,7 @@
 		133441161DBEB79F0088586D /* SDK */ = {
 			isa = PBXGroup;
 			children = (
+				1303AC921DBFBED500FEBC2B /* README.md */,
 				133441171DBEB79F0088586D /* HyprMX.framework */,
 			);
 			path = SDK;
