@@ -33,6 +33,19 @@
 /* End PBXAggregateTarget section */
 
 /* Begin PBXBuildFile section */
+		133441021DBEB2B50088586D /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = AEF1F32B16EF9AD700273462 /* Foundation.framework */; };
+		133441181DBEB79F0088586D /* HyprMXGlobalMediationSettings.m in Sources */ = {isa = PBXBuildFile; fileRef = 133441131DBEB79F0088586D /* HyprMXGlobalMediationSettings.m */; };
+		133441191DBEB79F0088586D /* HyprMXGlobalMediationSettings.m in Sources */ = {isa = PBXBuildFile; fileRef = 133441131DBEB79F0088586D /* HyprMXGlobalMediationSettings.m */; };
+		1334411A1DBEB79F0088586D /* HyprMXGlobalMediationSettings.m in Sources */ = {isa = PBXBuildFile; fileRef = 133441131DBEB79F0088586D /* HyprMXGlobalMediationSettings.m */; };
+		1334411B1DBEB79F0088586D /* HyprMXRewardedVideoCustomEvent.m in Sources */ = {isa = PBXBuildFile; fileRef = 133441151DBEB79F0088586D /* HyprMXRewardedVideoCustomEvent.m */; };
+		1334411C1DBEB79F0088586D /* HyprMXRewardedVideoCustomEvent.m in Sources */ = {isa = PBXBuildFile; fileRef = 133441151DBEB79F0088586D /* HyprMXRewardedVideoCustomEvent.m */; };
+		1334411D1DBEB79F0088586D /* HyprMXRewardedVideoCustomEvent.m in Sources */ = {isa = PBXBuildFile; fileRef = 133441151DBEB79F0088586D /* HyprMXRewardedVideoCustomEvent.m */; };
+		1334411E1DBEB79F0088586D /* HyprMX.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 133441171DBEB79F0088586D /* HyprMX.framework */; };
+		1334411F1DBEB79F0088586D /* HyprMX.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 133441171DBEB79F0088586D /* HyprMX.framework */; };
+		133441201DBEB79F0088586D /* HyprMX.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 133441171DBEB79F0088586D /* HyprMX.framework */; };
+		133441371DBEB90C0088586D /* Accelerate.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 133441251DBEB8800088586D /* Accelerate.framework */; };
+		133441381DBEB9880088586D /* libxml2.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = 133441311DBEB8C70088586D /* libxml2.tbd */; };
+		133441391DBEB99B0088586D /* SafariServices.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 133441341DBEB8D60088586D /* SafariServices.framework */; settings = {ATTRIBUTES = (Weak, ); }; };
 		2AAA8DFC1D95C77B006962E8 /* MoPubSDKTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 2AAA8DFB1D95C77B006962E8 /* MoPubSDKTests.m */; };
 		2AAA8DFE1D95C77B006962E8 /* libMoPubSDK.a in Frameworks */ = {isa = PBXBuildFile; fileRef = AE515F9C171F1B110086B464 /* libMoPubSDK.a */; };
 		3DD2F5E81CBE9758003F2D81 /* MPNativeAdRendererConstants.h in Headers */ = {isa = PBXBuildFile; fileRef = 3DD2F5DD1CBE970D003F2D81 /* MPNativeAdRendererConstants.h */; };
@@ -1768,6 +1781,16 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
+		1303AC921DBFBED500FEBC2B /* README.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = "<group>"; };
+		1334410D1DBEB2B50088586D /* libHyprMarketplaceCustomEvent.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libHyprMarketplaceCustomEvent.a; sourceTree = BUILT_PRODUCTS_DIR; };
+		133441121DBEB79F0088586D /* HyprMXGlobalMediationSettings.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HyprMXGlobalMediationSettings.h; sourceTree = "<group>"; };
+		133441131DBEB79F0088586D /* HyprMXGlobalMediationSettings.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HyprMXGlobalMediationSettings.m; sourceTree = "<group>"; };
+		133441141DBEB79F0088586D /* HyprMXRewardedVideoCustomEvent.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HyprMXRewardedVideoCustomEvent.h; sourceTree = "<group>"; };
+		133441151DBEB79F0088586D /* HyprMXRewardedVideoCustomEvent.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HyprMXRewardedVideoCustomEvent.m; sourceTree = "<group>"; };
+		133441171DBEB79F0088586D /* HyprMX.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = HyprMX.framework; sourceTree = "<group>"; };
+		133441251DBEB8800088586D /* Accelerate.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Accelerate.framework; path = System/Library/Frameworks/Accelerate.framework; sourceTree = SDKROOT; };
+		133441311DBEB8C70088586D /* libxml2.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = libxml2.tbd; path = usr/lib/libxml2.tbd; sourceTree = SDKROOT; };
+		133441341DBEB8D60088586D /* SafariServices.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SafariServices.framework; path = System/Library/Frameworks/SafariServices.framework; sourceTree = SDKROOT; };
 		228C5BC23B424BB6B3D75FE7 /* libPods-Specs.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-Specs.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		2AAA8DF91D95C77B006962E8 /* MoPubSDKTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = MoPubSDKTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		2AAA8DFB1D95C77B006962E8 /* MoPubSDKTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = MoPubSDKTests.m; sourceTree = "<group>"; };
@@ -2648,6 +2671,15 @@
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
+		133441001DBEB2B50088586D /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				133441201DBEB79F0088586D /* HyprMX.framework in Frameworks */,
+				133441021DBEB2B50088586D /* Foundation.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		2AAA8DF61D95C77B006962E8 /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
@@ -2776,6 +2808,17 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				133441391DBEB99B0088586D /* SafariServices.framework in Frameworks */,
+				133441381DBEB9880088586D /* libxml2.tbd in Frameworks */,
+				AEE8E95616FBBBD900C41D15 /* MediaPlayer.framework in Frameworks */,
+				AEA97BE016EF9C030046D464 /* UIKit.framework in Frameworks */,
+				AEE8E95816FBBBF900C41D15 /* QuartzCore.framework in Frameworks */,
+				AEE3888E171F4F060019601C /* MobileCoreServices.framework in Frameworks */,
+				46DD863018037F8D00E5B8E3 /* CoreMedia.framework in Frameworks */,
+				AEA97BE316EF9C030046D464 /* CoreGraphics.framework in Frameworks */,
+				AEE8E95716FBBBF200C41D15 /* AVFoundation.framework in Frameworks */,
+				AEA97CB116EF9E9F0046D464 /* AdSupport.framework in Frameworks */,
+				133441371DBEB90C0088586D /* Accelerate.framework in Frameworks */,
 				57FEAA4C1BD974B9005A94B6 /* WebKit.framework in Frameworks */,
 				469474DB197A083D006AF074 /* libCedarAsync-StaticLib.a in Frameworks */,
 				A7A731BF18F5D10E00E327C9 /* libFoundation+PivotalCore-StaticLib.a in Frameworks */,
@@ -2788,13 +2831,11 @@
 				A7A731C318F5D10E00E327C9 /* libUIKit+PivotalSpecHelperStubs-StaticLib.a in Frameworks */,
 				AEA97BE116EF9C030046D464 /* Foundation.framework in Frameworks */,
 				4A01443B1B75432C001B649C /* MMAdSDK.framework in Frameworks */,
-				46DD863018037F8D00E5B8E3 /* CoreMedia.framework in Frameworks */,
 				468BD68817E8CE4100F8849B /* CFNetwork.framework in Frameworks */,
 				AEE38894171F4F250019601C /* Twitter.framework in Frameworks */,
 				AEE38892171F4F200019601C /* Social.framework in Frameworks */,
 				AEE38890171F4F180019601C /* PassKit.framework in Frameworks */,
 				4A42C8CC1ADEF3CA0063F637 /* GoogleMobileAds.framework in Frameworks */,
-				AEE3888E171F4F060019601C /* MobileCoreServices.framework in Frameworks */,
 				AEE38888171F4EEE0019601C /* AddressBook.framework in Frameworks */,
 				AEE38889171F4EEE0019601C /* AddressBookUI.framework in Frameworks */,
 				AE1091EA17011CC900812E6E /* CoreTelephony.framework in Frameworks */,
@@ -2803,19 +2844,14 @@
 				46672CD319BE5EB20047E671 /* Chartboost.framework in Frameworks */,
 				AE1091E417011C8400812E6E /* libsqlite3.dylib in Frameworks */,
 				57EF00911BD969CE002634DE /* VungleSDK.framework in Frameworks */,
-				AEE8E95816FBBBF900C41D15 /* QuartzCore.framework in Frameworks */,
-				AEE8E95716FBBBF200C41D15 /* AVFoundation.framework in Frameworks */,
-				AEE8E95616FBBBD900C41D15 /* MediaPlayer.framework in Frameworks */,
+				1334411F1DBEB79F0088586D /* HyprMX.framework in Frameworks */,
 				AEE8E94E16FB934C00C41D15 /* AudioToolbox.framework in Frameworks */,
 				AEE8E94D16FB934400C41D15 /* SystemConfiguration.framework in Frameworks */,
 				AEE8E94C16FB933B00C41D15 /* MessageUI.framework in Frameworks */,
 				AED9E4B216F78FCB00EA71A7 /* libxml2.2.dylib in Frameworks */,
 				4ADE5FF71B4FFA38004C3673 /* UnityAds.framework in Frameworks */,
-				AEA97CB116EF9E9F0046D464 /* AdSupport.framework in Frameworks */,
 				AEA97CAF16EF9E980046D464 /* StoreKit.framework in Frameworks */,
 				AEA97CAD16EF9E690046D464 /* CoreLocation.framework in Frameworks */,
-				AEA97BE016EF9C030046D464 /* UIKit.framework in Frameworks */,
-				AEA97BE316EF9C030046D464 /* CoreGraphics.framework in Frameworks */,
 				B29315711D624356001575C0 /* FBAudienceNetwork.framework in Frameworks */,
 				4A3CB2DB19749B0700160D24 /* libInMobi-4.4.1.a in Frameworks */,
 				AEBE0E1B17287F8B0091925C /* libGreystripeSDK.a in Frameworks */,
@@ -2828,6 +2864,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				1334411E1DBEB79F0088586D /* HyprMX.framework in Frameworks */,
 				46672CD219BE5EB20047E671 /* Chartboost.framework in Frameworks */,
 				BC4053691DAEF47E003ECDBB /* libFlurryAds_7.6.4.a in Frameworks */,
 				57EF00901BD969CE002634DE /* VungleSDK.framework in Frameworks */,
@@ -2853,6 +2890,28 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		133441111DBEB79F0088586D /* HyprMarketplace */ = {
+			isa = PBXGroup;
+			children = (
+				133441121DBEB79F0088586D /* HyprMXGlobalMediationSettings.h */,
+				133441131DBEB79F0088586D /* HyprMXGlobalMediationSettings.m */,
+				133441141DBEB79F0088586D /* HyprMXRewardedVideoCustomEvent.h */,
+				133441151DBEB79F0088586D /* HyprMXRewardedVideoCustomEvent.m */,
+				133441161DBEB79F0088586D /* SDK */,
+			);
+			name = HyprMarketplace;
+			path = AdNetworkSupport/HyprMarketplace;
+			sourceTree = SOURCE_ROOT;
+		};
+		133441161DBEB79F0088586D /* SDK */ = {
+			isa = PBXGroup;
+			children = (
+				1303AC921DBFBED500FEBC2B /* README.md */,
+				133441171DBEB79F0088586D /* HyprMX.framework */,
+			);
+			path = SDK;
+			sourceTree = "<group>";
+		};
 		2A3999A21D99F22400F2DD44 /* Recovered References */ = {
 			isa = PBXGroup;
 			children = (
@@ -3582,6 +3641,7 @@
 				BC0C78C41D90B20C0080E7E5 /* Flurry */,
 				AEE38829171F4D300019601C /* GoogleAdMob */,
 				AEE38839171F4D300019601C /* Greystripe */,
+				133441111DBEB79F0088586D /* HyprMarketplace */,
 				AEE3884D171F4D300019601C /* InMobi */,
 				AEE3885C171F4D300019601C /* Millennial */,
 				57D321D31BD98D2E00ACF21E /* Tapjoy */,
@@ -3754,6 +3814,7 @@
 				57D3221A1BD98DC900ACF21E /* libTapjoyCustomEvent.a */,
 				BC0C78A71D90B15E0080E7E5 /* libFlurryCustomEvent.a */,
 				2AAA8DF91D95C77B006962E8 /* MoPubSDKTests.xctest */,
+				1334410D1DBEB2B50088586D /* libHyprMarketplaceCustomEvent.a */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -3761,6 +3822,9 @@
 		AEF1F32A16EF9AD700273462 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				133441341DBEB8D60088586D /* SafariServices.framework */,
+				133441311DBEB8C70088586D /* libxml2.tbd */,
+				133441251DBEB8800088586D /* Accelerate.framework */,
 				AEE38886171F4EEE0019601C /* AddressBook.framework */,
 				AEE38887171F4EEE0019601C /* AddressBookUI.framework */,
 				AEA97CB016EF9E9F0046D464 /* AdSupport.framework */,
@@ -4882,6 +4946,23 @@
 /* End PBXHeadersBuildPhase section */
 
 /* Begin PBXNativeTarget section */
+		133440F91DBEB2B50088586D /* HyprMarketplaceCustomEvent */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 1334410A1DBEB2B50088586D /* Build configuration list for PBXNativeTarget "HyprMarketplaceCustomEvent" */;
+			buildPhases = (
+				133440FA1DBEB2B50088586D /* Sources */,
+				133441001DBEB2B50088586D /* Frameworks */,
+				133441091DBEB2B50088586D /* ShellScript */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = HyprMarketplaceCustomEvent;
+			productName = HyprMarketplaceCustomEvent;
+			productReference = 1334410D1DBEB2B50088586D /* libHyprMarketplaceCustomEvent.a */;
+			productType = "com.apple.product-type.library.static";
+		};
 		2AAA8DF81D95C77B006962E8 /* MoPubSDKTests */ = {
 			isa = PBXNativeTarget;
 			buildConfigurationList = 2AAA8E0D1D95C77B006962E8 /* Build configuration list for PBXNativeTarget "MoPubSDKTests" */;
@@ -5034,7 +5115,7 @@
 				57CF553819DE4539000D29C5 /* Sources */,
 				57CF553919DE4539000D29C5 /* Frameworks */,
 				57DC95C619E729E200BE93BA /* Headers */,
-				57CF556019DE45A3000D29C5 /* ShellScript */,
+				57CF556019DE45A3000D29C5 /* Run Script */,
 			);
 			buildRules = (
 			);
@@ -5280,6 +5361,7 @@
 				57D322021BD98DC900ACF21E /* TapjoyCustomEvent */,
 				4ADE60041B4FFA66004C3673 /* UnityCustomEvent */,
 				BC0C78941D90B15E0080E7E5 /* FlurryCustomEvent */,
+				133440F91DBEB2B50088586D /* HyprMarketplaceCustomEvent */,
 				2AAA8DF81D95C77B006962E8 /* MoPubSDKTests */,
 			);
 		};
@@ -5479,6 +5561,19 @@
 			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-Specs/Pods-Specs-resources.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
+		133441091DBEB2B50088586D /* ShellScript */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "sh Scripts/build_scripts/fabric_build_framework.sh";
+		};
 		4ADE60101B4FFA66004C3673 /* ShellScript */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
@@ -5622,13 +5717,14 @@
 			shellPath = /bin/sh;
 			shellScript = "sh Scripts/build_scripts/fabric_build_framework.sh";
 		};
-		57CF556019DE45A3000D29C5 /* ShellScript */ = {
+		57CF556019DE45A3000D29C5 /* Run Script */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
 			);
 			inputPaths = (
 			);
+			name = "Run Script";
 			outputPaths = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -5746,6 +5842,15 @@
 /* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
+		133440FA1DBEB2B50088586D /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				1334411D1DBEB79F0088586D /* HyprMXRewardedVideoCustomEvent.m in Sources */,
+				1334411A1DBEB79F0088586D /* HyprMXGlobalMediationSettings.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		2AAA8DF51D95C77B006962E8 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
@@ -6593,6 +6698,7 @@
 				4ADE5FF01B4FFA38004C3673 /* MPInstanceProvider+Unity.m in Sources */,
 				B2678A551C98BCA000A0290F /* MPAdBrowserControllerSpec.mm in Sources */,
 				57697EE6193FE51B00E7DF5A /* NSOperationQueue+MPSpecs.m in Sources */,
+				1334411C1DBEB79F0088586D /* HyprMXRewardedVideoCustomEvent.m in Sources */,
 				AEF9D685171CA8AD005AAA5A /* MPHTMLBannerCustomEventSpec.mm in Sources */,
 				57ACDB641AA134BE00A05633 /* AdColonyCustomEventSpec.mm in Sources */,
 				AEF9D686171CA8AD005AAA5A /* MPHTMLInterstitialCustomEventSpec.mm in Sources */,
@@ -6630,6 +6736,7 @@
 				AEF9D694171CA8AD005AAA5A /* MRPropertySpec.mm in Sources */,
 				AEF9D695171CA8AD005AAA5A /* NSURL+MPAdditionsSpec.mm in Sources */,
 				AEF9D696171CA8AD005AAA5A /* MPAnalyticsTrackerSpec.mm in Sources */,
+				133441191DBEB79F0088586D /* HyprMXGlobalMediationSettings.m in Sources */,
 				5792D7EE193E955F00A78123 /* MPNativeAd+Specs.m in Sources */,
 				A72F914919C0D4E900A5601B /* MPNativePositionResponseDeserializerSpec.mm in Sources */,
 				BC4053911DAF02A4003ECDBB /* FacebookBannerCustomEvent.m in Sources */,
@@ -6814,6 +6921,7 @@
 				875390D51B04076A001F0550 /* MPActivityViewControllerHelper+TweetShare.m in Sources */,
 				A7A1CDDE197478E20082A6FA /* MPNativeAdData.m in Sources */,
 				AEF9D54C171CA895005AAA5A /* MPAdDestinationDisplayAgent.m in Sources */,
+				133441181DBEB79F0088586D /* HyprMXGlobalMediationSettings.m in Sources */,
 				57AC69581BB21FA20053C556 /* MOPUBNativeVideoAdConfigValues.m in Sources */,
 				57B86B5919C78F5D00AD50EE /* MPConstants.m in Sources */,
 				4A2AEC461AA4F5C8002AFB88 /* ChartboostRewardedVideoCustomEvent.m in Sources */,
@@ -6918,6 +7026,7 @@
 				AEE38864171F4D300019601C /* ChartboostInterstitialCustomEvent.m in Sources */,
 				A714FE661B699587000EAEC4 /* MPVASTStringUtilities.m in Sources */,
 				57ACE4051AA7E8D900A05633 /* MPRewardedVideoAdManager.m in Sources */,
+				1334411B1DBEB79F0088586D /* HyprMXRewardedVideoCustomEvent.m in Sources */,
 				A7220FF31B6C2D750099DCF6 /* MPVASTResource.m in Sources */,
 				AEE38868171F4D300019601C /* MPGoogleAdMobBannerCustomEvent.m in Sources */,
 				878251D31BB38A0000EB5283 /* MPLogEvent+NativeVideo.m in Sources */,
@@ -7080,6 +7189,79 @@
 /* End PBXVariantGroup section */
 
 /* Begin XCBuildConfiguration section */
+		1334410B1DBEB2B50088586D /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ARCHS = (
+					"$(ARCHS_STANDARD)",
+					armv7s,
+				);
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				COPY_PHASE_STRIP = NO;
+				DEAD_CODE_STRIPPING = NO;
+				DSTROOT = /tmp/HyprMarketplaceCustomEvent.dst;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/AdNetworkSupport/HyprMarketplace/SDK",
+				);
+				GCC_PRECOMPILE_PREFIX_HEADER = NO;
+				GCC_PREFIX_HEADER = "";
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				OTHER_LDFLAGS = "-ObjC";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				PUBLIC_HEADERS_FOLDER_PATH = HeadersHyprMarketplace;
+				SKIP_INSTALL = YES;
+				STRIP_STYLE = "non-global";
+			};
+			name = Debug;
+		};
+		1334410C1DBEB2B50088586D /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ARCHS = (
+					"$(ARCHS_STANDARD)",
+					armv7s,
+				);
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				COPY_PHASE_STRIP = NO;
+				DEAD_CODE_STRIPPING = NO;
+				DSTROOT = /tmp/HyprMarketplaceCustomEvent.dst;
+				ENABLE_NS_ASSERTIONS = NO;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/AdNetworkSupport/HyprMarketplace/SDK",
+				);
+				GCC_PRECOMPILE_PREFIX_HEADER = NO;
+				GCC_PREFIX_HEADER = "";
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				OTHER_LDFLAGS = "-ObjC";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				PUBLIC_HEADERS_FOLDER_PATH = HeadersHyprMarketplace;
+				SKIP_INSTALL = YES;
+				STRIP_STYLE = "non-global";
+			};
+			name = Release;
+		};
 		2AAA8E011D95C77B006962E8 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
@@ -8108,6 +8290,7 @@
 					"$(PROJECT_DIR)/AdNetworkSupport/Unity/SDK",
 					"$(PROJECT_DIR)/AdNetworkSupport/TapJoy/SDK/Tapjoy.embeddedframework",
 					"$(PROJECT_DIR)/AdNetworkSupport/Facebook/SDK",
+					"$(PROJECT_DIR)/AdNetworkSupport/HyprMarketplace/SDK",
 				);
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "Specs/MoPubSDKSpecs/Specs-Prefix.pch";
@@ -8174,6 +8357,7 @@
 					"$(PROJECT_DIR)/AdNetworkSupport/Unity/SDK",
 					"$(PROJECT_DIR)/AdNetworkSupport/TapJoy/SDK/Tapjoy.embeddedframework",
 					"$(PROJECT_DIR)/AdNetworkSupport/Facebook/SDK",
+					"$(PROJECT_DIR)/AdNetworkSupport/HyprMarketplace/SDK",
 				);
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "Specs/MoPubSDKSpecs/Specs-Prefix.pch";
@@ -8288,6 +8472,7 @@
 					"$(PROJECT_DIR)/AdNetworkSupport/Unity/SDK",
 					"$(PROJECT_DIR)/AdNetworkSupport/TapJoy/SDK/Tapjoy.embeddedframework",
 					"$(PROJECT_DIR)/AdNetworkSupport/Facebook/SDK",
+					"$(PROJECT_DIR)/AdNetworkSupport/HyprMarketplace/SDK",
 				);
 				GCC_PRECOMPILE_PREFIX_HEADER = NO;
 				GCC_TREAT_WARNINGS_AS_ERRORS = YES;
@@ -8325,6 +8510,7 @@
 					"$(PROJECT_DIR)/AdNetworkSupport/Unity/SDK",
 					"$(PROJECT_DIR)/AdNetworkSupport/TapJoy/SDK/Tapjoy.embeddedframework",
 					"$(PROJECT_DIR)/AdNetworkSupport/Facebook/SDK",
+					"$(PROJECT_DIR)/AdNetworkSupport/HyprMarketplace/SDK",
 				);
 				GCC_PRECOMPILE_PREFIX_HEADER = NO;
 				GCC_TREAT_WARNINGS_AS_ERRORS = YES;
@@ -8431,6 +8617,15 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
+		1334410A1DBEB2B50088586D /* Build configuration list for PBXNativeTarget "HyprMarketplaceCustomEvent" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				1334410B1DBEB2B50088586D /* Debug */,
+				1334410C1DBEB2B50088586D /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
 		2AAA8E0D1D95C77B006962E8 /* Build configuration list for PBXNativeTarget "MoPubSDKTests" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
