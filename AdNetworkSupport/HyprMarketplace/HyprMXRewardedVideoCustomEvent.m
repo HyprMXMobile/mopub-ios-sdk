@@ -108,7 +108,7 @@ static NSString *hyprPropertyID;
     if (propertyID == nil || ![propertyID isKindOfClass:[NSString class]]) {
         
         NSLog(@"HyprMarketplace_HyprAdapter could not initialize - propertyID must be a string (empty is OK). Please check your MoPub Dashboard's AdUnit Settings.");
-        
+        [self.delegate rewardedVideoDidFailToLoadAdForCustomEvent:self error:nil];
         return;
     }
     
@@ -117,7 +117,7 @@ static NSString *hyprPropertyID;
     if (distributorID == nil || ![distributorID isKindOfClass:[NSString class]] || [distributorID length] == 0 ) {
         
         NSLog(@"HyprMarketplace_HyprAdapter could not initialize - distributorID must be a non-empty string. Please check your MoPub Dashboard's AdUnit Settings");
-        
+        [self.delegate rewardedVideoDidFailToLoadAdForCustomEvent:self error:nil];
         return;
     }
     
@@ -144,9 +144,15 @@ static NSString *hyprPropertyID;
     
     [[HYPRManager sharedManager] canShowAd:^(BOOL isOfferReady) {
         
-        [self.delegate rewardedVideoDidLoadAdForCustomEvent:self];
-        
         self.offerReady = isOfferReady;
+        
+        if (isOfferReady) {
+            [self.delegate rewardedVideoDidLoadAdForCustomEvent:self];
+
+        } else {
+            [self.delegate rewardedVideoDidFailToLoadAdForCustomEvent:self error:nil];
+            
+        }
     }];
 }
 
