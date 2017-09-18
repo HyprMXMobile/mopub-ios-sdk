@@ -3,12 +3,15 @@
 //  HyprMX MoPubSDK Adapter
 
 #import "HyprMXController.h"
+#import "HyprMXGlobalMediationSettings.h"
 
 /**
  * Required Properties for configuration of adapter.
- * NOTE: Please configure your MoPub dashboard with an appropriate distributorID and propertyID.
+ * NOTE: Please configure your MoPub dashboard with an appropriate distributorID.
  */
 NSString * const kHyprMarketplaceAppConfigKeyDistributorId = @"distributorID";
+
+
 NSString * const kHyprMarketplaceAppConfigKeyUserId = @"userID";
 
 NSString * const hyprPropertyID = @"iOSMopubAdapter";
@@ -24,18 +27,23 @@ NSInteger const kHyprMarketplace_HyprAdapter_Version = 2;
 /** A BOOL that is set to YES when HyprMX has been initialized */
 static BOOL hyprSdkInitialized = NO;
 
+/** A BOOL that is set to YES when HyprMX has been initialized */
+static BOOL hyprOfferReady = NO;
+
 /** An NSString that stores a copy of the distributor ID */
 static NSString *hyprDistributorID;
 
 /** An NSString that stores a copy of the User ID */
 static NSString *hyprUserID;
 
+@interface HyprMXController () <MPMediationSettingsProtocol>
+@end
+
 @implementation HyprMXController
 
 #pragma mark - Public Methods -
 
 + (NSInteger)adapterVersion {
-    
     return kHyprMarketplace_HyprAdapter_Version;
 }
 
@@ -48,13 +56,19 @@ static NSString *hyprUserID;
     return hyprSdkInitialized;
 }
 
-#pragma mark - MPRewardedVideoCustomEvent Override Methods -
++ (BOOL)isOfferReady {
+    return hyprOfferReady;
+}
 
-+ (void)initializeSDKWithDistributorId:(NSString *)distributorID userID:(NSString *)userID {
+#pragma mark - Initialization and Inventory Checking Methods -
+
++ (void)initializeSDKWithDistributorId:(NSString *)distributorID {
     
     if (hyprSdkInitialized) {
         return;
     }
+    
+    [HyprMXController manageUserId];
     
     if (!hyprSdkInitialized ||
         ![[HYPRManager sharedManager].userId isEqualToString:hyprUserID] ||
@@ -72,38 +86,64 @@ static NSString *hyprUserID;
     }
 }
 
-+ (void)checkForAd:(void (^)(BOOL))callback {
++ (BOOL)checkForAd {
+    [[HYPRManager sharedManager] canShowAd:^(BOOL isOfferReady){
+        hyprOfferReady = isOfferReady;
+    }];
+    return hyprOfferReady;
+}
+
++ (void)canShowAd:(void (^)(BOOL))callback {
     [[HYPRManager sharedManager] canShowAd:^(BOOL isOfferReady){
         callback(isOfferReady);
     }];
 }
 
++ (void)displayOfferRewarded:(BOOL)rewarded callback:(void (^)(BOOL completed, MPRewardedVideoReward *reward))callback {
+
+    hyprOfferReady = NO;
+    [[HYPRManager sharedManager] displayOffer:^(BOOL completed, HYPROffer *offer) {
+        
+        NSLog(@"%@ %@ Offer %@", self.class, NSStringFromSelector(_cmd), completed ? @"completed SUCCESSFULLY" : @"FAILED completion");
+        
+        if (completed) {
+            NSLog(@"Offer: %@", [offer title]);
+            NSLog(@"Transaction ID: %@", offer.hyprTransactionID);
+        }
+        
+        MPRewardedVideoReward *videoReward = nil;
+        if (rewarded && completed) {
+            
+            videoReward = [[MPRewardedVideoReward alloc] initWithCurrencyType:offer.rewardText amount:offer.rewardQuantity];
+        }
+        callback(completed, videoReward);
+    }];
+}
 #pragma mark - Helper Methods -
 
-+ (NSString *)manageUserId {
+
++ (void)manageUserId {
+
+    HyprMXGlobalMediationSettings *globalMediationSettings = [[MoPub sharedInstance] globalMediationSettingsForClass:[HyprMXGlobalMediationSettings class]];
+    NSString *userID = nil;
     
-    if (self.globalMediationSettings.userId) {
+    if (globalMediationSettings.userId.length > 0) {
+        userID = globalMediationSettings.userId;
         
-        self.userID = self.globalMediationSettings.userId;
-    
     } else {
         
         NSString *savedUserID = [[NSUserDefaults standardUserDefaults] objectForKey:kHyprMarketplaceAppConfigKeyUserId];
-        
         if (savedUserID) {
-            
-            self.userID = savedUserID;
-            
+            userID = savedUserID;
+
         } else {
-            
-            self.userID = [[[UIDevice currentDevice] identifierForVendor] UUIDString];
-            
+            userID = [[[UIDevice currentDevice] identifierForVendor] UUIDString];
         }
      }
     
-    [[NSUserDefaults standardUserDefaults] setObject:self.userID
+    hyprUserID = userID;
+    [[NSUserDefaults standardUserDefaults] setObject:userID
                                               forKey:kHyprMarketplaceAppConfigKeyUserId];
-            
     [[NSUserDefaults standardUserDefaults] synchronize];
 }
 

@@ -9,6 +9,8 @@
 
 @interface HyprMXController : NSObject
 
+extern NSString * const kHyprMarketplaceAppConfigKeyDistributorId;
+
 /**
  * This method returns the version of the HyprMXRewardedVideo Adapter
  *
@@ -18,7 +20,11 @@
 
 + (void)initializeSDKWithDistributorId:(NSString *)distributorID;
 
-+ (void)checkForAd:(void (^)(BOOL))callback;
++ (BOOL)checkForAd;
+
++ (void)canShowAd:(void (^)(BOOL))callback;
+
++ (void)displayOfferRewarded:(BOOL)rewarded callback:(void (^)(BOOL completed, MPRewardedVideoReward *reward))callback;
 
 + (BOOL)hyprMXInitialized;
 

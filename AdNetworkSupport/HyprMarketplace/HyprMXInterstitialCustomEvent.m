@@ -3,70 +3,19 @@
 //  HyprMX MoPubSDK Adapter
 
 #import "HyprMXInterstitialCustomEvent.h"
-
-/**
- * Required Properties for configuration of adapter.
- * NOTE: Please configure your MoPub dashboard with an appropriate distributorID and propertyID.
- */
-NSString * const kHyprMarketplaceAppConfigKeyDistributorId = @"distributorID";
-NSString * const kHyprMarketplaceAppConfigKeyPropertyId = @"propertyID";
-NSString * const kHyprMarketplaceAppConfigKeyUserId = @"userID";
-
-NSInteger const kHyprMarketplace_Interstitial_HyprAdapter_Version = 1;
-
-@interface HyprMXInterstitialCustomEvent () <MPMediationSettingsProtocol>
-
-#pragma mark - Internal Properties -
-
-/**
- * A unique NSString that identifies an individual user
- * userID can be provided by the HyprMXGlobalMediationSettings object
- * if no userID is provided, the UIDevice identifierForVendor is used
- */
-@property (strong, nonatomic) NSString *userID;
-
-/**
- * Global Configuration Object containing userID and Array of Rewards
- */
-@property (strong, nonatomic) HyprMXGlobalMediationSettings *globalMediationSettings;
-
-
-#pragma mark - Internal Methods -
-
-/**
- * This method manages the retreival and storage of the user ID and checks the globalMediationSettings and NSUserDefaults for a valid ID
- * Will set the userID to UIDevice identifierForVendor if no other is available and stores the userID property to NSUserDefaults
- */
-- (void)manageUserId;
-
-@end
-
-/*****
- * Shared State. Adapter is reinitialized for each ad request, but we don't want to re-init HyprMX.
- * We store our shared state in these variables.
- *****/
-
-/** A BOOL that is set to YES when HyprMX has been initialized */
-//static BOOL hyprSdkInitialized = NO;
-
-/** An NSString that stores a copy of the distributor ID */
-//static NSString *hyprDistributorID;
-
-/** An NSString that stores a copy of the property ID */
-//static NSString *hyprPropertyID;
-
+#import "HyprMXController.h"
 
 @implementation HyprMXInterstitialCustomEvent
 
 #pragma mark - Public Methods -
 
 + (NSInteger)adapterVersion {
-
-    return kHyprMarketplace_Interstitial_HyprAdapter_Version;
+    
+    return [HyprMXController adapterVersion];
 }
 
 + (NSString *)hyprMXSdkVersion {
-
+    
     return [[HYPRManager sharedManager] versionString];
 }
 
@@ -75,25 +24,44 @@ NSInteger const kHyprMarketplace_Interstitial_HyprAdapter_Version = 1;
 - (void)requestInterstitialWithCustomEventInfo:(NSDictionary *)info {
     NSAssert([NSThread isMainThread], @"Expected to be on the main thread, but something went wrong.");
     
-    self.globalMediationSettings = [[MoPub sharedInstance] globalMediationSettingsForClass:[HyprMXGlobalMediationSettings class]];
-    
     NSString *distributorID = [info objectForKey:kHyprMarketplaceAppConfigKeyDistributorId];
     
+    if (distributorID == nil || ![distributorID isKindOfClass:[NSString class]] || [distributorID length] == 0 ) {
+        
+        NSLog(@"HyprMarketplace_HyprAdapter could not initialize - distributorID must be a non-empty string. Please check your MoPub Dashboard's AdUnit Settings");
+        [self.delegate interstitialCustomEvent:self didFailToLoadAdWithError:nil];
+        return;
+    }
     
-        [[HYPRManager sharedManager] canShowAd:^(BOOL isOfferReady) {
+    if (![HyprMXController hyprMXInitialized]) {
+        [HyprMXController initializeSDKWithDistributorId:distributorID];
+    }
     
-            if (isOfferReady) {
-                [self.delegate rewardedVideoDidLoadAdForCustomEvent:self];
-    
-            } else {
-                [self.delegate rewardedVideoDidFailToLoadAdForCustomEvent:self error:nil];
-    
-            }
-        }];
+    [HyprMXController canShowAd:^(BOOL isOfferReady) {
+        if (isOfferReady) {
+            [self.delegate interstitialCustomEvent:self didLoadAd:nil];
+            
+        } else {
+            [self.delegate interstitialCustomEvent:self didFailToLoadAdWithError:nil];
+        }
+    }];
 }
 
 - (void)showInterstitialFromRootViewController:(UIViewController *)rootViewController {
-    
+    [HyprMXController canShowAd:^(BOOL isOfferReady) {
+        if (isOfferReady) {
+            [self.delegate interstitialCustomEventWillAppear:self];
+            [self.delegate interstitialCustomEventDidAppear:self];
+            
+            [HyprMXController displayOfferRewarded:NO callback:^(BOOL completed, MPRewardedVideoReward *reward) {
+                [self.delegate interstitialCustomEventWillDisappear:self];
+                [self.delegate interstitialCustomEventDidDisappear:self];
+                
+            }];
+        } else {
+            [self.delegate interstitialCustomEventDidExpire:self];
+        }
+    }];
 }
 
 @end

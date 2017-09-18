@@ -7,7 +7,6 @@
 
 #import "MoPub.h"
 #import "MPRewardedVideoCustomEvent.h"
-#import "HyprMXGlobalMediationSettings.h"
 
 @interface HyprMXRewardedVideoCustomEvent : MPRewardedVideoCustomEvent
 

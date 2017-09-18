@@ -5,23 +5,6 @@
 #import "HyprMXRewardedVideoCustomEvent.h"
 #import "HyprMXController.h"
 
-/**
- * Required Properties for configuration of adapter.
- * NOTE: Please configure your MoPub dashboard with an appropriate distributorID and propertyID.
- */
-NSString * const kHyprMarketplaceAppConfigKeyDistributorId = @"distributorID";
-
-
-@interface HyprMXRewardedVideoCustomEvent () <MPMediationSettingsProtocol>
-
-/**
- * Global Configuration Object containing userID and Array of Rewards
- */
-@property (strong, nonatomic) HyprMXGlobalMediationSettings *globalMediationSettings;
-@property (nonatomic) BOOL offerReady;
-
-@end
-
 @implementation HyprMXRewardedVideoCustomEvent
 
 #pragma mark - Public Methods -
@@ -42,8 +25,6 @@ NSString * const kHyprMarketplaceAppConfigKeyDistributorId = @"distributorID";
     
     NSAssert([NSThread isMainThread], @"Expected to be on the main thread, but something went wrong.");
     
-    self.globalMediationSettings = [[MoPub sharedInstance] globalMediationSettingsForClass:[HyprMXGlobalMediationSettings class]];
-    
     NSString *distributorID = [info objectForKey:kHyprMarketplaceAppConfigKeyDistributorId];
     
     if (distributorID == nil || ![distributorID isKindOfClass:[NSString class]] || [distributorID length] == 0 ) {
@@ -52,61 +33,40 @@ NSString * const kHyprMarketplaceAppConfigKeyDistributorId = @"distributorID";
         [self.delegate rewardedVideoDidFailToLoadAdForCustomEvent:self error:nil];
         return;
     }
-    NSString *userID = nil;
-    if (self.globalMediationSettings.userId) {
-        userID = self.globalMediationSettings.userId;
-    }
     
     if (![HyprMXController hyprMXInitialized]) {
-        [HyprMXController initializeSDKWithDistributorId:distributorID userId];
+        [HyprMXController initializeSDKWithDistributorId:distributorID];
     }
     
-    __weak typeof(self) weakSelf = self;
-    
-    [HyprMXController checkForAd:^(BOOL isOfferReady) {
-        weakSelf.offerReady = isOfferReady;
-        
+    [HyprMXController canShowAd:^(BOOL isOfferReady) {
         if (isOfferReady) {
-            [weakSelf.delegate rewardedVideoDidLoadAdForCustomEvent:weakSelf];
-            
+            [self.delegate rewardedVideoDidLoadAdForCustomEvent:self];
+
         } else {
-            [weakSelf.delegate rewardedVideoDidFailToLoadAdForCustomEvent:weakSelf error:nil];
+            [self.delegate rewardedVideoDidFailToLoadAdForCustomEvent:self error:nil];
         }
     }];
 }
 
 - (BOOL)hasAdAvailable {
-    __weak typeof(self) weakSelf = self;
-    
-    [HyprMXController checkForAd:^(BOOL isOfferReady) {
-        weakSelf.offerReady = isOfferReady;
-    }];
-    return self.offerReady;
+    return [HyprMXController checkForAd];
 }
 
 - (void)presentRewardedVideoFromViewController:(UIViewController *)viewController {
     
-    [HyprMXController checkForAd:^(BOOL isOfferReady) {
+    [HyprMXController canShowAd:^(BOOL isOfferReady) {
         if (isOfferReady) {
             [self.delegate rewardedVideoWillAppearForCustomEvent:self];
             [self.delegate rewardedVideoDidAppearForCustomEvent:self];
             
-            [[HYPRManager sharedManager] displayOffer:^(BOOL completed, HYPROffer *offer) {
-                
-                NSLog(@"%@ %@ Offer %@", self.class, NSStringFromSelector(_cmd), completed ? @"completed SUCCESSFULLY" : @"FAILED completion");
-                
+            [HyprMXController displayOfferRewarded:YES callback:^(BOOL completed, MPRewardedVideoReward *reward) {
                 [self.delegate rewardedVideoWillDisappearForCustomEvent:self];
                 [self.delegate rewardedVideoDidDisappearForCustomEvent:self];
-                
-                if (completed) {
+                if (reward) {
                     
-                    MPRewardedVideoReward *videoReward = [[MPRewardedVideoReward alloc] initWithCurrencyType:offer.rewardText amount:offer.rewardQuantity];
+                    [self.delegate rewardedVideoShouldRewardUserForCustomEvent:self reward:reward];
                     
-                    [self.delegate rewardedVideoShouldRewardUserForCustomEvent:self reward:videoReward];
-                    
-                    NSLog(@"Offer: %@", [offer title]);
-                    NSLog(@"Transaction ID: %@", offer.hyprTransactionID);
-                    NSLog(@"Reward ID: %@ Quantity: %@", offer.rewardIdentifier, offer.rewardQuantity);
+                    NSLog(@"Reward: %@ Quantity: %@", reward.currencyType, reward.amount);
                 }
             }];
         } else {
@@ -116,7 +76,6 @@ NSString * const kHyprMarketplaceAppConfigKeyDistributorId = @"distributorID";
 }
 
 - (void)handleCustomEventInvalidated {
-    
     NSLog(@"Adapter Invalidated Event Received.");
 }
 
