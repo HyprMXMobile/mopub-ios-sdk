@@ -3,7 +3,6 @@
 //  HyprMX MoPubSDK Adapter
 
 #import "HyprMXController.h"
-#import "HyprMXGlobalMediationSettings.h"
 
 /**
  * Required Properties for configuration of adapter.
@@ -62,17 +61,16 @@ static NSString *hyprUserID;
 
 #pragma mark - Initialization and Inventory Checking Methods -
 
-+ (void)initializeSDKWithDistributorId:(NSString *)distributorID {
++ (void)initializeSDKWithDistributorId:(NSString *)distributorID userID:(NSString *)userID {
     
-    if (hyprSdkInitialized) {
-        return;
+    [HyprMXController manageUserIdWithUserID:userID];
+    
+    if (hyprSdkInitialized && ![hyprDistributorID isEqualToString:distributorID]) {
+        NSLog(@"WARNING: HYPRManager already initialized with another distributor ID");
     }
     
-    [HyprMXController manageUserId];
-    
     if (!hyprSdkInitialized ||
-        ![[HYPRManager sharedManager].userId isEqualToString:hyprUserID] ||
-        ![hyprDistributorID isEqualToString:distributorID]) {
+        ![[HYPRManager sharedManager].userId isEqualToString:hyprUserID]) {
         
         hyprDistributorID = distributorID;
         
@@ -122,29 +120,23 @@ static NSString *hyprUserID;
 #pragma mark - Helper Methods -
 
 
-+ (void)manageUserId {
++ (void)manageUserIdWithUserID:(NSString *)userID {
 
-    HyprMXGlobalMediationSettings *globalMediationSettings = [[MoPub sharedInstance] globalMediationSettingsForClass:[HyprMXGlobalMediationSettings class]];
-    NSString *userID = nil;
-    
-    if (globalMediationSettings.userId.length > 0) {
-        userID = globalMediationSettings.userId;
-        
-    } else {
-        
+    if (userID.length < 1) {
         NSString *savedUserID = [[NSUserDefaults standardUserDefaults] objectForKey:kHyprMarketplaceAppConfigKeyUserId];
         if (savedUserID) {
             userID = savedUserID;
-
         } else {
             userID = [[[UIDevice currentDevice] identifierForVendor] UUIDString];
         }
      }
     
-    hyprUserID = userID;
-    [[NSUserDefaults standardUserDefaults] setObject:userID
-                                              forKey:kHyprMarketplaceAppConfigKeyUserId];
-    [[NSUserDefaults standardUserDefaults] synchronize];
+    if (![hyprUserID isEqualToString:userID]) {
+        hyprUserID = userID;
+        [[NSUserDefaults standardUserDefaults] setObject:hyprUserID
+                                                  forKey:kHyprMarketplaceAppConfigKeyUserId];
+        [[NSUserDefaults standardUserDefaults] synchronize];
+    }
 }
 
 @end

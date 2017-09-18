@@ -33,9 +33,7 @@
         return;
     }
     
-    if (![HyprMXController hyprMXInitialized]) {
-        [HyprMXController initializeSDKWithDistributorId:distributorID];
-    }
+    [HyprMXController initializeSDKWithDistributorId:distributorID userID:nil];
     
     [HyprMXController canShowAd:^(BOOL isOfferReady) {
         if (isOfferReady) {

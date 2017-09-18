@@ -3,6 +3,7 @@
 //  HyprMX MoPubSDK Adapter
 
 #import "HyprMXRewardedVideoCustomEvent.h"
+#import "HyprMXGlobalMediationSettings.h"
 #import "HyprMXController.h"
 
 @implementation HyprMXRewardedVideoCustomEvent
@@ -34,9 +35,15 @@
         return;
     }
     
-    if (![HyprMXController hyprMXInitialized]) {
-        [HyprMXController initializeSDKWithDistributorId:distributorID];
+    HyprMXGlobalMediationSettings *globalMediationSettings = [[MoPub sharedInstance] globalMediationSettingsForClass:[HyprMXGlobalMediationSettings class]];
+    NSString *userID = nil;
+    
+    if (globalMediationSettings.userId.length > 0) {
+        userID = globalMediationSettings.userId;
+        
     }
+    
+    [HyprMXController initializeSDKWithDistributorId:distributorID userID:userID];
     
     [HyprMXController canShowAd:^(BOOL isOfferReady) {
         if (isOfferReady) {
