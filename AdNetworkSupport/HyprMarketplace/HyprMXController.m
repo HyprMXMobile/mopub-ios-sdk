@@ -10,11 +10,8 @@
  */
 NSString * const kHyprMarketplaceAppConfigKeyDistributorId = @"distributorID";
 
-
 NSString * const kHyprMarketplaceAppConfigKeyUserId = @"hyprMarketplaceAppConfigKeyUserId";
-
 NSString * const hyprPropertyID = @"iOSMopubAdapter";
-
 NSInteger const kHyprMarketplace_HyprAdapter_Version = 2;
 
 
@@ -26,13 +23,13 @@ NSInteger const kHyprMarketplace_HyprAdapter_Version = 2;
 /** A BOOL that is set to YES when HyprMX has been initialized */
 static BOOL hyprSdkInitialized = NO;
 
-/** A BOOL that is set to YES when HyprMX has been initialized */
+/** A BOOL that is set to YES when HyprMX has an offer */
 static BOOL hyprOfferReady = NO;
 
 /** An NSString that stores a copy of the distributor ID */
 static NSString *hyprDistributorID;
 
-/** An NSString that stores a copy of the User ID */
+/** An NSString that stores a copy of the current User ID */
 static NSString *hyprUserID;
 
 @interface HyprMXController () <MPMediationSettingsProtocol>
@@ -47,7 +44,6 @@ static NSString *hyprUserID;
 }
 
 + (NSString *)hyprMXSdkVersion {
-    
     return [[HYPRManager sharedManager] versionString];
 }
 
@@ -71,9 +67,6 @@ static NSString *hyprUserID;
         if (nil == hyprDistributorID) {
             hyprDistributorID = distributorID;
         }
-        
-        // TODO: enable debug logging only when needed?
-        [HYPRManager enableDebugLogging];
         
         [HYPRManager disableAutomaticPreloading];
         
