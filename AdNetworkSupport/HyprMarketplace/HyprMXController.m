@@ -11,7 +11,7 @@
 NSString * const kHyprMarketplaceAppConfigKeyDistributorId = @"distributorID";
 
 
-NSString * const kHyprMarketplaceAppConfigKeyUserId = @"userID";
+NSString * const kHyprMarketplaceAppConfigKeyUserId = @"hyprMarketplaceAppConfigKeyUserId";
 
 NSString * const hyprPropertyID = @"iOSMopubAdapter";
 
@@ -55,10 +55,6 @@ static NSString *hyprUserID;
     return hyprSdkInitialized;
 }
 
-+ (BOOL)isOfferReady {
-    return hyprOfferReady;
-}
-
 #pragma mark - Initialization and Inventory Checking Methods -
 
 + (void)initializeSDKWithDistributorId:(NSString *)distributorID userID:(NSString *)userID {
@@ -72,9 +68,13 @@ static NSString *hyprUserID;
     if (!hyprSdkInitialized ||
         ![[HYPRManager sharedManager].userId isEqualToString:hyprUserID]) {
         
-        hyprDistributorID = distributorID;
+        if (nil == hyprDistributorID) {
+            hyprDistributorID = distributorID;
+        }
         
+        // TODO: enable debug logging only when needed?
         [HYPRManager enableDebugLogging];
+        
         [HYPRManager disableAutomaticPreloading];
         
         [[HYPRManager sharedManager] initializeWithDistributorId:hyprDistributorID
@@ -84,15 +84,13 @@ static NSString *hyprUserID;
     }
 }
 
-+ (BOOL)checkForAd {
-    [[HYPRManager sharedManager] canShowAd:^(BOOL isOfferReady){
-        hyprOfferReady = isOfferReady;
-    }];
++ (BOOL)hasAdAvailable {
     return hyprOfferReady;
 }
 
 + (void)canShowAd:(void (^)(BOOL))callback {
     [[HYPRManager sharedManager] canShowAd:^(BOOL isOfferReady){
+        hyprOfferReady = isOfferReady;
         callback(isOfferReady);
     }];
 }
@@ -114,6 +112,9 @@ static NSString *hyprUserID;
             
             videoReward = [[MPRewardedVideoReward alloc] initWithCurrencyType:offer.rewardText amount:offer.rewardQuantity];
         }
+        
+        // Refresh inventory state after showing an ad.
+        [self canShowAd:^(BOOL canShowAd) {}];
         callback(completed, videoReward);
     }];
 }

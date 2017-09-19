@@ -20,7 +20,7 @@ extern NSString * const kHyprMarketplaceAppConfigKeyDistributorId;
 
 + (void)initializeSDKWithDistributorId:(NSString *)distributorID userID:(NSString *)userID;
 
-+ (BOOL)checkForAd;
++ (BOOL)hasAdAvailable;
 
 + (void)canShowAd:(void (^)(BOOL))callback;
 

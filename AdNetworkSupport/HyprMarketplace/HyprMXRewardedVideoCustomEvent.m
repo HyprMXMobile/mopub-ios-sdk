@@ -56,7 +56,7 @@
 }
 
 - (BOOL)hasAdAvailable {
-    return [HyprMXController checkForAd];
+    return [HyprMXController hasAdAvailable];
 }
 
 - (void)presentRewardedVideoFromViewController:(UIViewController *)viewController {
