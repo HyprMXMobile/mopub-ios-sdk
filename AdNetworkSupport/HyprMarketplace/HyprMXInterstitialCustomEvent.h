@@ -1,14 +1,15 @@
 //
-//  HyprMXRewardedVideoCustomEvent.h
+//  HyprMXMPInterstitialCustomEvent.h
 //  HyprMX MoPubSDK Adapter
 
 #import <HyprMX/HyprMX.h>
 #import <Foundation/Foundation.h>
 
 #import "MoPub.h"
-#import "MPRewardedVideoCustomEvent.h"
+#import "MPInterstitialCustomEvent.h"
+#import "HyprMXGlobalMediationSettings.h"
 
-@interface HyprMXRewardedVideoCustomEvent : MPRewardedVideoCustomEvent
+@interface HyprMXInterstitialCustomEvent : MPInterstitialCustomEvent
 
 /**
  * This method returns the version of the HyprMXRewardedVideo Adapter
