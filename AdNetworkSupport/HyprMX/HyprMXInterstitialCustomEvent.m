@@ -5,18 +5,26 @@
 #import "HyprMXInterstitialCustomEvent.h"
 #import "HyprMXController.h"
 
+@interface HyprMXInterstitialCustomEvent () <HyprMXPlacementDelegate>
+@property (readonly) HyprMXPlacement *interstitialPlacement;
+@end
+
 @implementation HyprMXInterstitialCustomEvent
+
+- (HyprMXPlacement *)interstitialPlacement {
+    HyprMXPlacement *p = [HyprMX getPlacement:HyprMXPlacement.interstitialPlacementName];
+    p.placementDelegate = self;
+    return p;
+}
 
 #pragma mark - Public Methods -
 
 + (NSInteger)adapterVersion {
-    
     return [HyprMXController adapterVersion];
 }
 
 + (NSString *)hyprMXSdkVersion {
-    
-    return [[HYPRManager sharedManager] versionString];
+    return [NSString stringWithFormat:@"%s", HyprMX_SDKVersionString];
 }
 
 #pragma mark - MPInterstitialCustomEvent Override Methods -
@@ -35,31 +43,50 @@
     
     [HyprMXController initializeSDKWithDistributorId:distributorID userID:nil];
     
-    [HyprMXController canShowAd:^(BOOL isOfferReady) {
-        if (isOfferReady) {
-            [self.delegate interstitialCustomEvent:self didLoadAd:nil];
-            
-        } else {
-            [self.delegate interstitialCustomEvent:self didFailToLoadAdWithError:nil];
-        }
-    }];
+    [self.interstitialPlacement loadAd];
 }
 
 - (void)showInterstitialFromRootViewController:(UIViewController *)rootViewController {
-    [HyprMXController canShowAd:^(BOOL isOfferReady) {
-        if (isOfferReady) {
-            [self.delegate interstitialCustomEventWillAppear:self];
-            [self.delegate interstitialCustomEventDidAppear:self];
-            
-            [HyprMXController displayOfferRewarded:NO callback:^(BOOL completed, MPRewardedVideoReward *reward) {
-                [self.delegate interstitialCustomEventWillDisappear:self];
-                [self.delegate interstitialCustomEventDidDisappear:self];
-                
-            }];
-        } else {
-            [self.delegate interstitialCustomEventDidExpire:self];
-        }
-    }];
+    if ([self.interstitialPlacement isAdAvailable]) {
+        [self.interstitialPlacement showAd];
+    } else {
+        [self.delegate interstitialCustomEventDidExpire:self];
+    }
+}
+
+- (void)adDidStartForPlacement:(HyprMXPlacement *)placement {
+    [self.delegate interstitialCustomEventWillAppear:self];
+    [self.delegate interstitialCustomEventDidAppear:self];
+}
+
+- (void)adDidFinishForPlacement:(HyprMXPlacement *)placement adState:(HyprMXAdState)adState {
+    [self.delegate interstitialCustomEventWillDisappear:self];
+    [self.delegate interstitialCustomEventDidDisappear:self];
+}
+
+- (void)adDisplayErrorForPlacement:(HyprMXPlacement *)placement error:(HyprMXError)hyprMXError {
+    NSString *message = @"Unknown";
+    switch (hyprMXError) {
+        case DISPLAY_ERROR:
+            message = @"Error displaying Ad.";
+            break;
+        case NO_FILL:
+            message = @"No Fill.";
+            break;
+        case PLACEMENT_DOES_NOT_EXIST:
+            message = [NSString stringWithFormat:@"No such placement: %@", placement];
+            break;
+    }
+    NSLog(@"[HyprMX] Error displaying %@ ad: %@", placement.placementName, message);
+    [self.delegate interstitialCustomEvent:self didFailToLoadAdWithError:nil];
+}
+
+- (void)adAvailableForPlacement:(HyprMXPlacement *)placement {
+    [self.delegate interstitialCustomEvent:self didLoadAd:nil];
+}
+
+- (void)adNotAvailableForPlacement:(HyprMXPlacement *)placement {
+    [self.delegate interstitialCustomEvent:self didFailToLoadAdWithError:nil];
 }
 
 @end

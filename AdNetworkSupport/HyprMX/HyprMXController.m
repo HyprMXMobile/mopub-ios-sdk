@@ -11,8 +11,7 @@
 NSString * const kHyprMarketplaceAppConfigKeyDistributorId = @"distributorID";
 
 NSString * const kHyprMarketplaceAppConfigKeyUserId = @"hyprMarketplaceAppConfigKeyUserId";
-NSString * const hyprPropertyID = @"iOSMopubAdapter";
-NSInteger const kHyprMarketplace_HyprAdapter_Version = 2;
+NSInteger const kHyprMarketplace_HyprAdapter_Version = 3;
 
 
 /*****
@@ -22,9 +21,6 @@ NSInteger const kHyprMarketplace_HyprAdapter_Version = 2;
 
 /** A BOOL that is set to YES when HyprMX has been initialized */
 static BOOL hyprSdkInitialized = NO;
-
-/** A BOOL that is set to YES when HyprMX has an offer */
-static BOOL hyprOfferReady = NO;
 
 /** An NSString that stores a copy of the distributor ID */
 static NSString *hyprDistributorID;
@@ -44,7 +40,7 @@ static NSString *hyprUserID;
 }
 
 + (NSString *)hyprMXSdkVersion {
-    return [[HYPRManager sharedManager] versionString];
+    return [NSString stringWithFormat:@"%s", HyprMX_SDKVersionString];
 }
 
 + (BOOL)hyprMXInitialized {
@@ -55,62 +51,24 @@ static NSString *hyprUserID;
 
 + (void)initializeSDKWithDistributorId:(NSString *)distributorID userID:(NSString *)userID {
     
-    [HyprMXController manageUserIdWithUserID:userID];
-    
     if (hyprSdkInitialized && ![hyprDistributorID isEqualToString:distributorID]) {
         NSLog(@"WARNING: HYPRManager already initialized with another distributor ID");
     }
     
     if (!hyprSdkInitialized ||
-        ![[HYPRManager sharedManager].userId isEqualToString:hyprUserID]) {
+        ![userID isEqualToString:hyprUserID]) {
+        
+        [HyprMXController manageUserIdWithUserID:userID];
         
         if (nil == hyprDistributorID) {
             hyprDistributorID = distributorID;
         }
         
-        [HYPRManager disableAutomaticPreloading];
-        
-        [[HYPRManager sharedManager] initializeWithDistributorId:hyprDistributorID
-                                                      propertyId:hyprPropertyID
-                                                          userId:hyprUserID];
+        [HyprMX initializeWithDistributorId:hyprDistributorID userId:hyprUserID initializationDelegate:nil];
         hyprSdkInitialized = YES;
     }
 }
 
-+ (BOOL)hasAdAvailable {
-    return hyprOfferReady;
-}
-
-+ (void)canShowAd:(void (^)(BOOL))callback {
-    [[HYPRManager sharedManager] canShowAd:^(BOOL isOfferReady){
-        hyprOfferReady = isOfferReady;
-        callback(isOfferReady);
-    }];
-}
-
-+ (void)displayOfferRewarded:(BOOL)rewarded callback:(void (^)(BOOL completed, MPRewardedVideoReward *reward))callback {
-
-    hyprOfferReady = NO;
-    [[HYPRManager sharedManager] displayOffer:^(BOOL completed, HYPROffer *offer) {
-        
-        NSLog(@"%@ %@ Offer %@", self.class, NSStringFromSelector(_cmd), completed ? @"completed SUCCESSFULLY" : @"FAILED completion");
-        
-        if (completed) {
-            NSLog(@"Offer: %@", [offer title]);
-            NSLog(@"Transaction ID: %@", offer.hyprTransactionID);
-        }
-        
-        MPRewardedVideoReward *videoReward = nil;
-        if (rewarded && completed) {
-            
-            videoReward = [[MPRewardedVideoReward alloc] initWithCurrencyType:offer.rewardText amount:offer.rewardQuantity];
-        }
-        
-        // Refresh inventory state after showing an ad.
-        [self canShowAd:^(BOOL canShowAd) {}];
-        callback(completed, videoReward);
-    }];
-}
 #pragma mark - Helper Methods -
 
 

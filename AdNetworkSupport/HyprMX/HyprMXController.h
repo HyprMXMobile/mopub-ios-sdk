@@ -26,22 +26,6 @@ extern NSString * const kHyprMarketplaceAppConfigKeyDistributorId;
 + (void)initializeSDKWithDistributorId:(NSString *)distributorID userID:(NSString *)userID;
 
 /**
- * Returns the state of an ad available to present
- */
-+ (BOOL)hasAdAvailable;
-
-/**
- * Checks with the HYPRMarketplace for an ad to display
- * @param callback - block called after inventory check completes
- */
-+ (void)canShowAd:(void (^)(BOOL))callback;
-
-/**
- * Displays an ad
- */
-+ (void)displayOfferRewarded:(BOOL)rewarded callback:(void (^)(BOOL completed, MPRewardedVideoReward *reward))callback;
-
-/**
  * Returns the initialization state of HYPRManager
  */
 + (BOOL)hyprMXInitialized;
