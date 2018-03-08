@@ -60,6 +60,10 @@
     [self.rewardedPlacement loadAd];
 }
 
+- (BOOL)hasAdAvailable {
+    return [self.rewardedPlacement isAdAvailable];
+}
+
 - (void)presentRewardedVideoFromViewController:(UIViewController *)viewController {
     if ([self.rewardedPlacement isAdAvailable]) {
         [self.rewardedPlacement showAd];

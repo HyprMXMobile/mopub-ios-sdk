@@ -28,7 +28,7 @@ static NSString *hyprDistributorID;
 /** An NSString that stores a copy of the current User ID */
 static NSString *hyprUserID;
 
-@interface HyprMXController () <MPMediationSettingsProtocol>
+@interface HyprMXController () <MPMediationSettingsProtocol, HyprMXInitializationDelegate>
 @end
 
 @implementation HyprMXController
@@ -52,7 +52,7 @@ static NSString *hyprUserID;
 + (void)initializeSDKWithDistributorId:(NSString *)distributorID userID:(NSString *)userID {
     
     if (hyprSdkInitialized && ![hyprDistributorID isEqualToString:distributorID]) {
-        NSLog(@"WARNING: HYPRManager already initialized with another distributor ID");
+        NSLog(@"WARNING: HYPRMX already initialized with another distributor ID");
     }
     
     if (!hyprSdkInitialized ||
@@ -64,9 +64,18 @@ static NSString *hyprUserID;
             hyprDistributorID = distributorID;
         }
         
-        [HyprMX initializeWithDistributorId:hyprDistributorID userId:hyprUserID initializationDelegate:nil];
+        [HyprMX initializeWithDistributorId:hyprDistributorID userId:hyprUserID initializationDelegate:self];
         hyprSdkInitialized = YES;
     }
+}
+
+- (void)initializationDidComplete {
+    NSLog(@"HyprMX Initialization finished.");
+}
+
+- (void)initializationFailed {
+    NSLog(@"HyprMX Initialization Failed.");
+    hyprSdkInitialized = NO;
 }
 
 #pragma mark - Helper Methods -
