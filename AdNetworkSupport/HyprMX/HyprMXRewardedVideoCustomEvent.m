@@ -6,7 +6,19 @@
 #import "HyprMXGlobalMediationSettings.h"
 #import "HyprMXController.h"
 
+@interface HyprMXRewardedVideoCustomEvent () <HyprMXPlacementDelegate>
+
+@property (readonly) HyprMXPlacement *rewardedPlacement;
+
+@end
+
 @implementation HyprMXRewardedVideoCustomEvent
+
+- (HyprMXPlacement *)rewardedPlacement {
+    HyprMXPlacement *p = [HyprMX getPlacement:HyprMXPlacement.REWARDED];
+    p.placementDelegate = self;
+    return p;
+}
 
 #pragma mark - Public Methods -
 
@@ -17,7 +29,7 @@
 
 + (NSString *)hyprMXSdkVersion {
     
-    return [[HYPRManager sharedManager] versionString];
+    return [NSString stringWithFormat:@"%s", HyprMX_SDKVersionString];
 }
 
 #pragma mark - MPRewardedVideoCustomEvent Override Methods -
@@ -45,45 +57,66 @@
     
     [HyprMXController initializeSDKWithDistributorId:distributorID userID:userID];
     
-    [HyprMXController canShowAd:^(BOOL isOfferReady) {
-        if (isOfferReady) {
-            [self.delegate rewardedVideoDidLoadAdForCustomEvent:self];
-
-        } else {
-            [self.delegate rewardedVideoDidFailToLoadAdForCustomEvent:self error:nil];
-        }
-    }];
+    [self.rewardedPlacement loadAd];
 }
 
 - (BOOL)hasAdAvailable {
-    return [HyprMXController hasAdAvailable];
+    return [self.rewardedPlacement isAdAvailable];
 }
 
 - (void)presentRewardedVideoFromViewController:(UIViewController *)viewController {
-    
-    [HyprMXController canShowAd:^(BOOL isOfferReady) {
-        if (isOfferReady) {
-            [self.delegate rewardedVideoWillAppearForCustomEvent:self];
-            [self.delegate rewardedVideoDidAppearForCustomEvent:self];
-            
-            [HyprMXController displayOfferRewarded:YES callback:^(BOOL completed, MPRewardedVideoReward *reward) {
-                [self.delegate rewardedVideoWillDisappearForCustomEvent:self];
-                [self.delegate rewardedVideoDidDisappearForCustomEvent:self];
-                if (reward) {
-                    
-                    [self.delegate rewardedVideoShouldRewardUserForCustomEvent:self reward:reward];
-                    
-                    NSLog(@"Reward: %@ Quantity: %@", reward.currencyType, reward.amount);
-                }
-            }];
-        } else {
-            [self.delegate rewardedVideoDidFailToPlayForCustomEvent:self error:nil];
-        }
-    }];
+    if ([self.rewardedPlacement isAdAvailable]) {
+        [self.rewardedPlacement showAd];
+    } else {
+        [self.delegate rewardedVideoDidFailToPlayForCustomEvent:self error:nil];
+    }
 }
 
 - (void)handleCustomEventInvalidated {
     NSLog(@"Adapter Invalidated Event Received.");
 }
+
+#pragma mark Placement Delegate
+
+- (void)adDidStartForPlacement:(HyprMXPlacement *)placement {
+    [self.delegate rewardedVideoWillAppearForCustomEvent:self];
+    [self.delegate rewardedVideoDidAppearForCustomEvent:self];
+}
+
+- (void)adDidFinishForPlacement:(HyprMXPlacement *)placement adState:(HyprMXAdState)adState {
+    [self.delegate rewardedVideoWillDisappearForCustomEvent:self];
+    [self.delegate rewardedVideoDidDisappearForCustomEvent:self];
+}
+
+- (void)adDidRewardForPlacement:(HyprMXPlacement *)placement rewardName:(NSString *)rewardName rewardValue:(NSInteger)rewardValue {
+    [self.delegate rewardedVideoShouldRewardUserForCustomEvent:self reward:[[MPRewardedVideoReward alloc] initWithCurrencyType:rewardName amount:@(rewardValue)]];{
+    NSLog(@"Reward: %@ Quantity: %@", rewardName, @(rewardValue));}
+}
+
+- (void)adDisplayErrorForPlacement:(HyprMXPlacement *)placement error:(HyprMXError)hyprMXError {
+    NSString *message = @"Unknown";
+    switch (hyprMXError) {
+        case DISPLAY_ERROR:
+            message = @"Error displaying Ad.";
+            break;
+        case NO_FILL:
+            message = @"No Fill.";
+            break;
+        case PLACEMENT_DOES_NOT_EXIST:
+            message = [NSString stringWithFormat:@"No such placement: %@", placement];
+            break;
+    }
+    NSLog(@"[HyprMX] Error displaying %@ ad: %@", placement.placementName, message);
+    [self.delegate rewardedVideoDidFailToPlayForCustomEvent:self error:nil];
+}
+
+- (void)adAvailableForPlacement:(HyprMXPlacement *)placement {
+    [self.delegate rewardedVideoDidLoadAdForCustomEvent:self];
+}
+
+- (void)adNotAvailableForPlacement:(HyprMXPlacement *)placement {
+    [self.delegate rewardedVideoDidFailToLoadAdForCustomEvent:self error:nil];
+}
+
 
 @end
