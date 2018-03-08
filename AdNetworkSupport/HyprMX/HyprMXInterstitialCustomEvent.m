@@ -12,7 +12,7 @@
 @implementation HyprMXInterstitialCustomEvent
 
 - (HyprMXPlacement *)interstitialPlacement {
-    HyprMXPlacement *p = [HyprMX getPlacement:HyprMXPlacement.interstitialPlacementName];
+    HyprMXPlacement *p = [HyprMX getPlacement:HyprMXPlacement.INTERSTITIAL];
     p.placementDelegate = self;
     return p;
 }

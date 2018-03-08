@@ -15,7 +15,7 @@
 @implementation HyprMXRewardedVideoCustomEvent
 
 - (HyprMXPlacement *)rewardedPlacement {
-    HyprMXPlacement *p = [HyprMX getPlacement:HyprMXPlacement.rewardedPlacementName];
+    HyprMXPlacement *p = [HyprMX getPlacement:HyprMXPlacement.REWARDED];
     p.placementDelegate = self;
     return p;
 }
